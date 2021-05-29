@@ -78,6 +78,7 @@ public class PlayerSetup extends AppCompatActivity {
             // Signed in successfully, show authenticated UI.
             //updateUI(account);
 
+            assert account != null;
             Toast.makeText(this, "Sign In Successfully! "+ account.getEmail(), Toast.LENGTH_SHORT).show();
             String name=account.getDisplayName();
             player1.setText("" + name);
