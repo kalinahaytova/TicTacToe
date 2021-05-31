@@ -19,6 +19,7 @@ public class GameLogic {
 
     private int player = 1;
 
+    //shows empty cells for placing a marker
     GameLogic() {
         gameBoard = new int[3][3];
         for (int r=0; r<3; r++) {
@@ -28,6 +29,7 @@ public class GameLogic {
         }
     }
 
+    //ensures that row and col are empty and sets player turn
     public boolean updateGameBoard(int row, int col) {
         if (gameBoard[row-1][col-1] == 0) {
             gameBoard[row-1][col-1] = player;
@@ -50,34 +52,41 @@ public class GameLogic {
 
         boolean isWinner = false;
 
+        //Horizontal check
         for (int r=0; r<3; r++) {
             if (gameBoard[r][0] == gameBoard[r][1] && gameBoard[r][0] == gameBoard[r][2] &&
                     gameBoard[r][0] != 0) {
                 winType = new  int[] {r, 0, 1};
                 isWinner = true;
+                break;
             }
         }
 
+        //Vertical check
         for (int c=0; c<3; c++) {
-            if (gameBoard[c][0] == gameBoard[c][1] && gameBoard[c][0] == gameBoard[c][2] &&
-                    gameBoard[c][0] != 0) {
+            if (gameBoard[0][c] == gameBoard[1][c] && gameBoard[2][c] == gameBoard[0][c] &&
+                    gameBoard[0][c] != 0) {
                 winType = new  int[] {0, c, 2};
                 isWinner = true;
+                break;
             }
         }
 
-        if (gameBoard[0][0] == gameBoard[1][1] && gameBoard[0][0] == gameBoard[2][2] &&
+        //negative diagonal
+        if (gameBoard[0][0] == gameBoard[1][1] && gameBoard[2][2] == gameBoard[0][0] &&
                 gameBoard[0][0] != 0) {
             winType = new  int[] {0, 2, 3};
             isWinner = true;
         }
 
-        if (gameBoard[2][0] == gameBoard[1][1] && gameBoard[2][0] == gameBoard[0][2] &&
+        //positive diagonal
+        if (gameBoard[2][0] == gameBoard[1][1] && gameBoard[0][2] == gameBoard[2][0] &&
                 gameBoard[2][0] != 0) {
             winType = new  int[] {2, 2, 4};
             isWinner = true;
         }
 
+        //check board for non zero values
         int boardFilled = 0;
 
         for (int r=0; r<3; r++) {
@@ -105,6 +114,7 @@ public class GameLogic {
         }
     }
 
+    //repopulate gameboard with zero values
     public void resetGame() {
         for (int r=0; r<3; r++) {
             for (int c=0; c<3; c++) {
