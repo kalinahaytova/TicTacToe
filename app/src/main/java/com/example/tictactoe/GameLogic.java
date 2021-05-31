@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 public class GameLogic {
 
-    private int[][] gameBoard;
+    private final int[][] gameBoard;
 
     private String[] playerNames = {"Player 1", "Player 2"};
 
