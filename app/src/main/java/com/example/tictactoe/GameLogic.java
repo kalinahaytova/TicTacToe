@@ -100,7 +100,7 @@ public class GameLogic {
         if (isWinner) {
             playAgainBTN.setVisibility(View.VISIBLE);
             homeBTN.setVisibility(View.VISIBLE);
-            playerTurn.setText((playerNames[player-1] + "Won!!!"));
+            playerTurn.setText((playerNames[player-1] + " Won!!!"));
             return true;
         }
         else if(boardFilled == 9) {
